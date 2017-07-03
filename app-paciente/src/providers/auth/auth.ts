@@ -45,15 +45,13 @@ export class AuthProvider {
     return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.senha)
       .then(authRes => {
         this.pacientes.push({
-          email         : data.email,
-          nome          : data.nome,
-          crm           : data.crm,
-          especialidade : data.especialidade,
-          estado        : data.estado,
-          cidade        : data.cidade,
-          bairro        : data.bairro,
-          logradouro    : data.logradouro,
-          uid           : authRes.uid
+          email      : data.email,
+          nome       : data.nome,
+          estado     : data.estado,
+          cidade     : data.cidade,
+          bairro     : data.bairro,
+          logradouro : data.logradouro,
+          uid        : authRes.uid
         }).then(res => {
           return firebase.Promise.resolve();
         }, error => {

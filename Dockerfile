@@ -10,6 +10,6 @@ RUN git config --global user.email "tiagomarek@gmail.com"
 RUN git config --global user.name "TiagoAMarek"
 
 
-EXPOSE 4200
+EXPOSE 8100
 EXPOSE 35729
 EXPOSE 53703
