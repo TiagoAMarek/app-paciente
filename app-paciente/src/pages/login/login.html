@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Usuário</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary">Senha</ion-label>
+        <ion-input formControlName="senha" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button block>Entrar</button>
+      <button margin-top ion-button block color="secondary" (click)="irCadastro()">Cadastre-se</button>
+    </div>
+  </form>
+</ion-content>
