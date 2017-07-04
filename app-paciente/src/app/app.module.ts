@@ -5,21 +5,24 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
+// Main Component
 import { MyApp } from './app.component';
 
+// Providers
 import { AuthProvider } from '../providers/auth/auth';
+import { EstadosMunicipiosProvider } from '../providers/estados-municipios/estados-municipios';
 
 // pages
 import { LoginPage } from './../pages/login/login';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { HomePageModule } from '../pages/home/home.module';
 import { MenuPageModule } from '../pages/menu/menu.module';
+import { ListaMedicosPageModule } from '../pages/lista-medicos/lista-medicos.module';
 
 // AF 2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { EstadosMunicipiosProvider } from '../providers/estados-municipios/estados-municipios';
 
 // AF2 Settings
 const firebaseConfig = {
@@ -45,7 +48,8 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
     HomePageModule,
     HttpModule,
-    MenuPageModule
+    MenuPageModule,
+    ListaMedicosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

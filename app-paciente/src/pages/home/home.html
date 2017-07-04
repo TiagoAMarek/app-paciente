@@ -5,11 +5,37 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Agenda do médico
+      Solicitar uma consulta
     </ion-title>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding>
-  <h1>Home page</h1>
+    <form [formGroup]="buscarForm" (submit)="goToListaMedicos()" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label color="primary">Especialidade</ion-label>
+          <ion-select formControlName="especialidade">
+            <ion-option  *ngFor="let item of listaEspecialidades" value="{{item.nome}}">{{item.nome}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary">Estado</ion-label>
+          <ion-select formControlName="estado" (ionChange)="alterarListaMunicipios()">
+            <ion-option  *ngFor="let item of listaEstados" value="{{item}}">{{item}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary">Cidade</ion-label>
+          <ion-select formControlName="cidade">
+            <ion-option  *ngFor="let item of listaMunicipios" value="{{item}}">{{item}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <div padding>
+        <button ion-button block>Buscar</button>
+      </div>
+  </form>
 </ion-content>
