@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -16,6 +16,7 @@ import { ListaMedicosPage } from './../lista-medicos/lista-medicos';
 })
 export class HomePage {
   private buscarForm: FormGroup;
+  private loading: Loading;
   private listaEspecialidades: any[] = [];
   private listaEstados: any[] = [];
   private listaMunicipios: any[] = [];
@@ -25,12 +26,17 @@ export class HomePage {
     public navParams: NavParams,
     public emData: EstadosMunicipiosProvider,
     public formBuilder: FormBuilder,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     public db: AngularFireDatabase
   ) {
     this.buscarForm = formBuilder.group({
       especialidade : ['', Validators.compose([Validators.required])],
       estado        : ['', Validators.compose([Validators.required])],
       cidade        : [{ value: '', disabled: true }, Validators.compose([Validators.required])]
+    });
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
     });
 
     // captura a lista de estados
@@ -43,6 +49,24 @@ export class HomePage {
     this.db.list('/especialidades')
     .subscribe(res => {
       this.listaEspecialidades = res;
+    });
+  }
+
+  /**
+   * Alert de erro
+   * @param {string} message mensagem de erro
+   */
+  public alertError(message): void {
+    this.loading.dismiss().then( () => {
+      this.alertCtrl.create({
+        message: message,
+        buttons: [
+          {
+            text: "Ok",
+            role: 'cancel'
+          }
+        ]
+      }).present();
     });
   }
 
@@ -60,6 +84,10 @@ export class HomePage {
   }
 
   goToListaMedicos() {
-    this.navCtrl.push(ListaMedicosPage);
+    if(!this.buscarForm.valid) {
+      this.alertError('É necessário selecionar todos os campos de busca.');
+      return;
+    }
+    this.navCtrl.push(ListaMedicosPage, this.buscarForm.value);
   }
 }
