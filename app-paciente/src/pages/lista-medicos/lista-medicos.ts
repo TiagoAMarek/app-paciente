@@ -26,6 +26,10 @@ export class ListaMedicosPage implements OnInit {
     });
   }
 
+  /**
+   * Busca os médicos de acordo com a busca do usuário
+   * @return {void}
+   */
   ngOnInit(): void {
     this.medicos = this.db.list('/medicos', {
       query: {
@@ -40,9 +44,4 @@ export class ListaMedicosPage implements OnInit {
     });
     this.loading.present();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaMedicosPage');
-  }
-
 }

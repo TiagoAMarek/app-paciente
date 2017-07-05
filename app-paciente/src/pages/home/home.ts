@@ -35,6 +35,8 @@ export class HomePage {
       estado        : ['', Validators.compose([Validators.required])],
       cidade        : [{ value: '', disabled: true }, Validators.compose([Validators.required])]
     });
+
+    // inicia spinner de carregamento
     this.loading = this.loadingCtrl.create({
       dismissOnPageChange: true,
     });
@@ -83,7 +85,11 @@ export class HomePage {
     });
   }
 
-  goToListaMedicos() {
+  /**
+   * Redireciona para a lista de médicos com os parâmetros de busca
+   * @return {void}
+   */
+  goToListaMedicos(): void {
     if(!this.buscarForm.valid) {
       this.alertError('É necessário selecionar todos os campos de busca.');
       return;
