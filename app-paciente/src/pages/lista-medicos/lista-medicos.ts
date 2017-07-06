@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
-
+import { IonicPage, NavController, ModalController, NavParams, LoadingController, Loading } from 'ionic-angular';
+import { ModalSolicitacao } from './modal-solicitacao';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
@@ -10,6 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class ListaMedicosPage implements OnInit {
   public medicos;
+  public agenda;
   public loading: Loading;
   public data: any = {};
   public lista: any = [];
@@ -18,9 +19,11 @@ export class ListaMedicosPage implements OnInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
     public db: AngularFireDatabase
   ) {
     this.data = navParams.data;
+    this.agenda = this.db.list('/agenda');
     this.loading = this.loadingCtrl.create({
       dismissOnPageChange: true,
     });
@@ -44,4 +47,23 @@ export class ListaMedicosPage implements OnInit {
     });
     this.loading.present();
   }
+
+  abrirSolicitacao(): void {
+    let modalSolitacao = this.modalCtrl.create(ModalSolicitacao, { userId: 8675309 });
+
+    modalSolitacao.present();
+  }
+
+  /*solicitarAgendamento(uid): void {
+    this.agenda.push({
+      mensagem : data.logradouro,
+      uid      : authRes.uid
+    }).then(res => {
+      return firebase.Promise.resolve();
+    }, error => {
+      // TODO Rollback na criação do usuário de autenticação
+      console.error("cadastro de usuário - ", error);
+      return firebase.Promise.reject(new Error("falha ao cadastrar paciente na base"));
+    });
+  }*/
 }
