@@ -44,6 +44,10 @@ export class AuthProvider {
   signupUser(data: any): firebase.Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.senha)
       .then(authRes => {
+        window.localStorage.setItem('nome', data.nome);
+        window.localStorage.setItem('email', data.email);
+        window.localStorage.setItem('cidade', data.cidade);
+        window.localStorage.setItem('estado', data.estado);
         this.pacientes.push({
           email      : data.email,
           nome       : data.nome,
