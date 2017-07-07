@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let item of lista" (click)="abrirSolicitacao(item.uid)">
+  <ion-card *ngFor="let item of lista" (click)="abrirSolicitacao(item)">
     <ion-card-header>
       <h1>{{item.nome}}</h1>
     </ion-card-header>

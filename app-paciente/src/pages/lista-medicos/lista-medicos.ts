@@ -48,8 +48,12 @@ export class ListaMedicosPage implements OnInit {
     this.loading.present();
   }
 
-  abrirSolicitacao(uid): void {
-    let modalSolitacao = this.modalCtrl.create(ModalSolicitacao, { docId: uid });
+  abrirSolicitacao(data): void {
+    let modalSolitacao = this.modalCtrl.create(ModalSolicitacao, {
+      docId: data.uid,
+      nome: data.nome,
+      email: data.email
+    });
 
     modalSolitacao.present();
   }

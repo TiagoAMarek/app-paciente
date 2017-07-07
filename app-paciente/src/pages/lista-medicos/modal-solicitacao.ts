@@ -19,6 +19,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
     <ion-content padding>
       <form [formGroup]="agendamentoForm">
+        <div padding>
+          <h1>{{nome}}</h1>
+          <p>{{email}}</p>
+        </div>
         <ion-list>
           <ion-item>
             <ion-label color="primary">Descreva seus sintomas:</ion-label>
@@ -36,6 +40,8 @@ export class ModalSolicitacao {
   private agendamentoForm: FormGroup;
   private loading: Loading;
   private uid;
+  private nome;
+  private email;
   private agenda;
 
   constructor(
@@ -53,6 +59,8 @@ export class ModalSolicitacao {
       dismissOnPageChange: true,
     });
     this.uid = params.get('docId');
+    this.nome = params.get('nome');
+    this.email = params.get('email');
     this.agenda = this.db.list('/agenda');
  }
 
