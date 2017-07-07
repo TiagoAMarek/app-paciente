@@ -70,6 +70,10 @@ export class LoginPage {
 
         this.pacientes = this.pacientes.subscribe(res => {
           console.log(res);
+          window.localStorage.setItem('nome', res[0].nome);
+          window.localStorage.setItem('email', res[0].email);
+          window.localStorage.setItem('cidade', res[0].cidade);
+          window.localStorage.setItem('estado', res[0].estado);
           if(res.length === 0) {
             console.warn('Você não tem permissão para acessar este recurso');
             this.alertError('Você não tem permissão para acessar este recurso');

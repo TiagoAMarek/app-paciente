@@ -87,6 +87,8 @@ export class ModalSolicitacao {
       return;
     }
     this.agenda.push({
+      nome     : window.localStorage.getItem('nome'),
+      email    : window.localStorage.getItem('email'),
       mensagem : this.agendamentoForm.value.mensagem,
       uid      : this.uid
     }).then(() => {

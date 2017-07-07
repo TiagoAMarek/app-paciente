@@ -32,8 +32,15 @@ export class HomePage {
   ) {
     this.buscarForm = formBuilder.group({
       especialidade : ['', Validators.compose([Validators.required])],
-      estado        : ['', Validators.compose([Validators.required])],
+      estado        : [window.localStorage.getItem('estado') || '', Validators.compose([Validators.required])],
       cidade        : [{ value: '', disabled: true }, Validators.compose([Validators.required])]
+    });
+
+    this.emData.getCidades(this.buscarForm.value.estado)
+    .subscribe(res => {
+      this.buscarForm.controls.cidade.enable();
+      this.listaMunicipios = Object.keys(res);
+      this.buscarForm.controls.cidade.patchValue(window.localStorage.getItem('cidade'));
     });
 
     // inicia spinner de carregamento
