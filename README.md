@@ -1,0 +1,20 @@
+# Aplicativo do paciente
+Aplicativo usado para o paciente solicitar agendamentos de consulta.
+
+## Ambiente de desenvolvimento
+Antes de começar certifique-se de que o [Docker](https://docs.docker.com/engine/installation/) e o [docker-compose](https://docs.docker.com/compose/install/) estão instalados em sua máquina
+
+### 1. Build das containers 
+```
+sudo docker-compose build
+```
+
+### 2. Instalando dependências
+```
+sudo docker-compose up install_node_modules
+```
+
+### 3. Iniciar o ambiente
+```
+sudo docker-compose up serve
+```
