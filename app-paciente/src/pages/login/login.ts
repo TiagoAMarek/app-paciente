@@ -27,6 +27,9 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public db: AngularFireDatabase
   ) {
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+    });
 
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
@@ -88,10 +91,6 @@ export class LoginPage {
             ]
           }).present();
         });
-      });
-
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
       });
       this.loading.present();
     }

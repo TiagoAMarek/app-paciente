@@ -48,22 +48,9 @@ export class ListaMedicosPage implements OnInit {
     this.loading.present();
   }
 
-  abrirSolicitacao(): void {
-    let modalSolitacao = this.modalCtrl.create(ModalSolicitacao, { userId: 8675309 });
+  abrirSolicitacao(uid): void {
+    let modalSolitacao = this.modalCtrl.create(ModalSolicitacao, { docId: uid });
 
     modalSolitacao.present();
   }
-
-  /*solicitarAgendamento(uid): void {
-    this.agenda.push({
-      mensagem : data.logradouro,
-      uid      : authRes.uid
-    }).then(res => {
-      return firebase.Promise.resolve();
-    }, error => {
-      // TODO Rollback na criação do usuário de autenticação
-      console.error("cadastro de usuário - ", error);
-      return firebase.Promise.reject(new Error("falha ao cadastrar paciente na base"));
-    });
-  }*/
 }
