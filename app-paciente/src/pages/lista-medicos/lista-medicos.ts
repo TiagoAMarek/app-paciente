@@ -40,10 +40,11 @@ export class ListaMedicosPage implements OnInit {
         equalTo: this.data.cidade.toUpperCase()
       }
     });
-    this.medicos.subscribe(medicos => {
+    this.medicos = this.medicos.subscribe(medicos => {
       this.lista = medicos.filter(medico => {
         return medico['estado'] === this.data.estado && medico['especialidade'] === this.data.especialidade.toUpperCase();
       });
+      this.medicos.unsubscribe();
     });
     this.loading.present();
   }
